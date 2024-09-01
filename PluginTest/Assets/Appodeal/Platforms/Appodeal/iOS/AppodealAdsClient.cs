@@ -1,13 +1,13 @@
 #if UNITY_IPHONE
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using AOT;
-using UnityEngine;
-using ConsentManager;
 using AppodealAds.Unity.Api;
 using AppodealAds.Unity.Common;
+using ConsentManager;
+using UnityEngine;
 
 namespace AppodealAds.Unity.iOS
 {
@@ -794,11 +794,19 @@ namespace AppodealAds.Unity.iOS
 
             AppodealObjCBridge.AppodealLogEvent(eventName, dictionaryToString(paramsFiltered));
         }
-
+        
         public void validateAppStoreInAppPurchase(IAppStoreInAppPurchase purchase, IInAppPurchaseValidationListener listener)
         {
             inAppPurchaseValidationListener = listener;
-            AppodealObjCBridge.AppodealValidateInAppPurchase(purchase.getProductId(), purchase.getPrice(), purchase.getCurrency(), purchase.getTransactionId(), purchase.getAdditionalParameters(), (int) purchase.getPurchaseType(), inAppPurchaseValidationSucceeded, inAppPurchaseValidationFailed);
+            
+            AppodealObjCBridge.AppodealValidateInAppPurchase(new AppodealObjCBridge.PurchaseData {
+                productIdentifier = purchase.getProductId(),
+                price = purchase.getPrice(),
+                currency = purchase.getCurrency(),
+                transactionId = purchase.getTransactionId(),
+                additionalParams = purchase.getAdditionalParameters(),
+                type = (int) purchase.getPurchaseType()
+            }, inAppPurchaseValidationSucceeded, inAppPurchaseValidationFailed);
         }
 
         public void destroy(int adType)

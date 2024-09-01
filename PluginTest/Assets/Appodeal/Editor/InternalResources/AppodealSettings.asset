@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AppodealSettings
   m_EditorClassIdentifier: 
   adMobAndroidAppId: 
-  adMobIosAppId: 
+  adMobIosAppId: ca-app-pub-3940256099942544~1458002511
   accessCoarseLocationPermission: 0
   writeExternalStoragePermission: 0
   accessWifiStatePermission: 0

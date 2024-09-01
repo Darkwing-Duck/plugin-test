@@ -354,22 +354,27 @@ void AppodealLogEvent(const char *eventName, const char *eventParams) {
     [Appodeal trackEvent:NSStringFromUTF8String(eventName) customParameters:NSDictionaryFromUTF8String(eventParams)];
 }
 
-void AppodealValidateInAppPurchase(const char *productIdentifier,
-                                   const char *price,
-                                   const char *currency,
-                                   const char *transactionId,
-                                   const char *additionalParams,
-                                   int type,
-                                   InAppPurchaseValidationSucceededCallback success,
+typedef struct PurchaseData 
+{ 
+    const char *productIdentifier;
+    const char *price;
+    const char *currency;
+    const char *transactionId;
+    const char *additionalParams;
+    int type;
+};
+
+void AppodealValidateInAppPurchase(struct PurchaseData purchaseData, 
+                                   InAppPurchaseValidationSucceededCallback success, 
                                    InAppPurchaseValidationFailedCallback failure) {
-    NSString *productIdString = NSStringFromUTF8String(productIdentifier);
-    NSString *priceString = NSStringFromUTF8String(price);
-    NSString *currencyString = NSStringFromUTF8String(currency);
-    NSString *transactionIdString = NSStringFromUTF8String(transactionId);
-    NSDictionary *additionalParamsDict = NSDictionaryFromUTF8String(additionalParams);
+    NSString *productIdString = NSStringFromUTF8String(purchaseData.productIdentifier);
+    NSString *priceString = NSStringFromUTF8String(purchaseData.price);
+    NSString *currencyString = NSStringFromUTF8String(purchaseData.currency);
+    NSString *transactionIdString = NSStringFromUTF8String(purchaseData.transactionId);
+    NSDictionary *additionalParamsDict = NSDictionaryFromUTF8String(purchaseData.additionalParams);
     
     [Appodeal validateAndTrackInAppPurchase:productIdString
-                                       type:(APDPurchaseType)type
+                                       type:(APDPurchaseType)purchaseData.type
                                       price:priceString
                                    currency:[currencyString substringWithRange:NSMakeRange(0, MIN(5,currencyString.length))]
                               transactionId:transactionIdString
