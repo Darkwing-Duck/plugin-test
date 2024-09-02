@@ -1,10 +1,10 @@
 using System;
-using System.Reflection;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using UnityEngine;
+using System.Reflection;
 using AppodealAds.Unity.Common;
 using ConsentManager;
+using UnityEngine;
 
 namespace AppodealAds.Unity.Api
 {
@@ -424,6 +424,14 @@ namespace AppodealAds.Unity.Api
         public static void trackInAppPurchase(double amount, string currency)
         {
             getInstance().trackInAppPurchase(amount, currency);
+        }
+
+        /// <summary>
+        /// Returns build date string.
+        /// </summary>
+        public static string getBuildDate()
+        {
+            return getInstance().getBuildDate();
         }
 
         /// <summary>

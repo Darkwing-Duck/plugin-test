@@ -62,6 +62,7 @@ namespace AppodealAds.Unity.Common
         void setTriggerOnLoadedOnPrecache(int adTypes, bool onLoadedTriggerBoth);
         void setUserId(string id);
         string getUserId();
+        string getBuildDate();
         long getSegmentId();
         void trackInAppPurchase(double amount, string currency);
         void setInterstitialCallbacks(IInterstitialAdListener listener);

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using UnityEngine;
-using ConsentManager;
 using AppodealAds.Unity.Api;
 using AppodealAds.Unity.Common;
+using ConsentManager;
+using UnityEngine;
 
 namespace AppodealAds.Unity.Dummy
 {
@@ -32,6 +32,12 @@ namespace AppodealAds.Unity.Dummy
         {
             Debug.Log("Call to Appodeal.show on not supported platform. To test advertising, install your application on the Android/iOS device.");
             return false;
+        }
+
+        public string getBuildDate()
+        {
+            Debug.Log("Call to Appodeal.getBuildDate on not supported platform. To test advertising, install your application on the Android/iOS device.");
+            return string.Empty;
         }
 
         public bool showBannerView(int YAxis, int XAxis, string Placement)

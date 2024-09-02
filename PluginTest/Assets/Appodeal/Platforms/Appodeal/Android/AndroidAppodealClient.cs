@@ -1,13 +1,13 @@
 #if UNITY_ANDROID
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using UnityEngine;
+using System.Linq;
 using AppodealAds.Unity.Api;
 using AppodealAds.Unity.Common;
 using ConsentManager;
 using ConsentManager.Platforms.Android;
+using UnityEngine;
 
 namespace AppodealAds.Unity.Android
 {
@@ -383,6 +383,16 @@ namespace AppodealAds.Unity.Android
         public void trackInAppPurchase(double amount, string currency)
         {
             getAppodealClass().CallStatic("trackInAppPurchase", getActivity(), amount, currency);
+        }
+        
+        public string getBuildDate()
+        {
+            var pattern = "MM/dd/yyyy HH:mm:ss";
+            var format = new AndroidJavaObject("java.text.SimpleDateFormat");
+            var dateObject = getAppodealClass().CallStatic<AndroidJavaObject>("getBuildDate");
+            var result = format.Call<string>("format", dateObject);
+            
+            return result;
         }
 
         public List<string> getNetworks(int adTypes)
