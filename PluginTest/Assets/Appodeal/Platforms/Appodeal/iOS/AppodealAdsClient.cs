@@ -824,6 +824,12 @@ namespace AppodealAds.Unity.iOS
             Debug.Log("Not Supported by iOS SDK");
         }
 
+        public string getBuildDate()
+        {
+            Debug.Log("Not Supported by iOS SDK");
+            return string.Empty;
+        }
+
         public void validatePlayStoreInAppPurchase(IPlayStoreInAppPurchase purchase, IInAppPurchaseValidationListener listener)
         {
             Debug.Log("Not Supported by iOS SDK");
